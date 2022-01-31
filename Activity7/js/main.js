@@ -43,6 +43,9 @@ d3.csv('data/disasters.csv')
 		//Be sure to send it the costsPerYear data 
 		// The svg for this element has already been created in index.html, above the timeline circles- check it out
 		let lines = new Line({
+			
+			'parentElement': '#line',
+
 			'containerHeight': 1100,
                         'containerWidth': 1000
 		}, costsPerYear);

@@ -75,7 +75,15 @@ class Line {
     // NOTE:   .data([vis.data])  needs to be structured like this
     //  Set the fill to  '#e9eff5'
     // using the helper function: .attr('d', vis.area);
-
+    vis.area = d3.area()
+    	.x(d => vis.xScale(vis.xValue(d)))
+	.y1(d => vis.yScale(vis.yValue(d)))
+	.y0(vis.height)
+    
+    vis.chart.append('path')
+	.data([vis.data])
+	.attr('fill', '#e9eff5')
+	.attr('d', vis.area);
 
 
     //TO DO- create a line path 
@@ -83,7 +91,9 @@ class Line {
     // first, initialize line generator helper function : vis.line
     // x should use xScale
     // y should use yScale
-
+    vis.line = d3.line()
+	.x(d => vis.xScale(vis.xValue(d)))
+	.y(d => vis.yScale(vis.yValue(d)))
 
     // Append a path to your vis.chart
     // NOTE:   .data([vis.data])  needs to be structured like this
@@ -91,7 +101,12 @@ class Line {
     // fill should be 'none'
     // stroke width should be 2 
     // using the helper function: .attr('d', vis.line);
-
+    vis.chart.append('path')
+	.data([vis.data]) 
+	.attr('stroke', '#8693a0')
+	.attr('fill', 'none')
+	.attr('stroke-width', 2)
+	.attr('d', vis.line);
 
 
   }
